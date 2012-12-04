@@ -1,15 +1,22 @@
 class mysqlproxy::install
 {
+
   package{
     'mysql-proxy':
       ensure => installed;
   }
+  user { "mysql-proxy":
+    ensure => present,
+    require => Package["mysql-proxy"],
+  }
+
   file {
     "/etc/mysql-proxy":
       owner  => root,
       group  => root,
       mode   => 755, 
       ensure => directory;
+      require => Package["mysql-proxy"],
     "/etc/mysql-proxy/lua.d":
       owner   => root,
       group   => root,
@@ -18,6 +25,7 @@ class mysqlproxy::install
       purge   => true,
       source  => "puppet:///modules/mysqlproxy/lua.d",
       ensure  => directory;
+      require => Package["mysql-proxy"],
   }
   if ($luascript !='')
   {
