@@ -13,11 +13,11 @@ Usage
 
 To install a package with a configuration and lua script:
 
-  class { 'mysqlproxy':
-    address   => '0.0.0.0:3306',
-    luascript => '/usr/share/lua/rw-splitting.lua',
-    sourceluascript => "puppet:///modules/othermysql/repo/rw-splitting.lua",
-    options   => '--log-use-syslog',
-    backends  => ['mysql-master-1:3306', 'mysql-master-2:3307'];
-    slaves    => ['mysql-slave-1:3306', 'mysql-slave-2:3306'];
-  }
+    class { 'mysqlproxy':
+      address   => '0.0.0.0:3306',
+      luascript => '/usr/share/lua/rw-splitting.lua',
+      sourceluascript => "puppet:///modules/othermysql/repo/rw-splitting.lua",
+      options   => '--log-use-syslog',
+      backends  => ['mysql-master-1:3306', 'mysql-master-2:3307'];
+      slaves    => ['mysql-slave-1:3306', 'mysql-slave-2:3306'];
+    }
