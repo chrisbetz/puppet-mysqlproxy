@@ -13,7 +13,7 @@
 
 class mysqlproxy::params {
   case $::osfamily {
-    redhat {
+    redhat: {
       $config_file = '/etc/default/mysql-proxy'
       $template    = 'mysqlproxy/default.erb'
     }
