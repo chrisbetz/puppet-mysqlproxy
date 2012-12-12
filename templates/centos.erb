@@ -1,37 +1,38 @@
 # Managed by Puppet
 
-PROXY_OPTIONS="<%if backends.is_a? Array -%>
-<% backends.each do |backend| -%><%= "--proxy-backend-addresses=#{backend} \" %><% end -%>
+PROXY_OPTIONS="
+<%if backends.is_a? Array -%>
+<% backends.each do |backend| -%><%= "--proxy-backend-addresses=#{backend} \\\n" %><% end -%>
 <% elsif backends != '' -%>
-<%= "--proxy-backend-addresses=#{backends} \" -%>
+<%= "--proxy-backend-addresses=#{backends} \\\n" -%>
 <% end -%>
 <%if slaves.is_a? Array -%>
-<% slaves.each do |slave| -%><%= "--proxy-read-only-backend-addresses=#{slave} \" %><% end -%>
+<% slaves.each do |slave| -%><%= "--proxy-read-only-backend-addresses=#{slave} \\\n" %><% end -%>
 <% elsif slaves != '' -%>
-<%= "--proxy-read-only-backend-addresses=#{slaves} \" -%>
+<%= "--proxy-read-only-backend-addresses=#{slaves} \\\n" -%>
 <% end -%>
 <% if luascript != '' -%>
-<%= "--proxy-lua-script=#{luascript} \" -%>
+<%= "--proxy-lua-script=#{luascript} \\\n" -%>
 <% end -%>
 <% if address != '' -%>
-<%= "--proxy-address=#{address} \" -%>
+<%= "--proxy-address=#{address} \\\n" -%>
 <% end -%>
 <% if adminaddress != '' -%>
-<%= "--admin-address=#{adminaddress} \" -%>
+<%= "--admin-address=#{adminaddress} \\\n" -%>
 <% end -%>
 <% if adminusername != '' -%>
-<%= "--admin-username=#{adminusername} \" -%>
+<%= "--admin-username=#{adminusername} \\\n" -%>
 <% end -%>
 <% if adminpassword != '' -%>
-<%= "--admin-password=#{adminpassword} \" -%>
+<%= "--admin-password=#{adminpassword} \\\n" -%>
 <% end -%>
 <% if adminluascript != '' -%>
-<%= "--admin-lua-script=#{adminluascript} \" -%>
+<%= "--admin-lua-script=#{adminluascript} \\\n" -%>
 <% end -%>
 <% if log_level != '' -%>
-<%= "--log-level=#{log_level} \" -%>
+<%= "--log-level=#{log_level} \\\n" -%>
 <% end -%>
 <% if log_file != '' -%>
-<%= "--log-file=#{log_file} \" -%>
+<%= "--log-file=#{log_file} \\\n" -%>
 <% end -%>
 <%= options %>"
