@@ -18,6 +18,7 @@ class mysqlproxy::params {
         centos: {
           $config_file = '/etc/sysconfig/mysql-proxy'
           $template    = 'mysqlproxy/centos.erb'
+        }
         default: {
           $config_file = '/etc/default/mysql-proxy'
           $template    = 'mysqlproxy/default.erb'
