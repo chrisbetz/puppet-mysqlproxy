@@ -62,6 +62,7 @@ class mysqlproxy (
     mode    => '0644',
     content => template($template),
     require => Package["mysql-proxy"],
+    notify  => Service["mysql-proxy"]
   }
 
   file{ $luascript:
@@ -69,5 +70,6 @@ class mysqlproxy (
       group   => 'root',
       mode    => '0644',
       source  => $sourceluascript,
+      notify  => Service["mysql-proxy"]
   }
 }

@@ -13,7 +13,7 @@
 
 class mysqlproxy::params {
   case $::osfamily {
-    redhat: {
+    'redhat': {
       case $::operatingsystem {
         centos: {
           $config_file = '/etc/sysconfig/mysql-proxy'
@@ -24,6 +24,10 @@ class mysqlproxy::params {
           $template    = 'mysqlproxy/default.erb'
         }
       }
+    }
+    'debian': {
+          $config_file = '/etc/default/mysql-proxy'
+          $template    = 'mysqlproxy/debian.erb'      
     }
     default: {
       fail("Unsupported platform: ${::operatingsystem}")
